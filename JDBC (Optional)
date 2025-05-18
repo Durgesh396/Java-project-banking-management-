@@ -1,0 +1,112 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+class Account {
+    String name;
+    int accNo;
+    double balance;
+
+    Account(String name, int accNo, double balance) {
+        this.name = name;
+        this.accNo = accNo;
+        this.balance = balance;
+    }
+
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    boolean withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    String getDetails() {
+        return "Account No: " + accNo + "\nName: " + name + "\nBalance: ₹" + balance;
+    }
+}
+
+public class BankingGUI {
+    private static Account account;
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Banking Management System");
+        frame.setSize(400, 400);
+        frame.setLayout(new GridLayout(7, 1));
+
+        JTextField nameField = new JTextField();
+        JTextField accNoField = new JTextField();
+        JTextField balanceField = new JTextField();
+
+        JButton createBtn = new JButton("Create Account");
+        JButton depositBtn = new JButton("Deposit");
+        JButton withdrawBtn = new JButton("Withdraw");
+        JButton viewBtn = new JButton("View Account");
+
+        frame.add(new JLabel("Name:"));
+        frame.add(nameField);
+        frame.add(new JLabel("Account No:"));
+        frame.add(accNoField);
+        frame.add(new JLabel("Initial Balance:"));
+        frame.add(balanceField);
+        frame.add(createBtn);
+
+        createBtn.addActionListener(e -> {
+            String name = nameField.getText();
+            int accNo = Integer.parseInt(accNoField.getText());
+            double balance = Double.parseDouble(balanceField.getText());
+
+            account = new Account(name, accNo, balance);
+            JOptionPane.showMessageDialog(frame, "Account Created Successfully!");
+        });
+
+        depositBtn.addActionListener(e -> {
+            if (account == null) {
+                JOptionPane.showMessageDialog(frame, "Please create an account first.");
+                return;
+            }
+            String input = JOptionPane.showInputDialog("Enter amount to deposit:");
+            if (input != null) {
+                double amt = Double.parseDouble(input);
+                account.deposit(amt);
+                JOptionPane.showMessageDialog(frame, "Deposited ₹" + amt);
+            }
+        });
+
+        withdrawBtn.addActionListener(e -> {
+            if (account == null) {
+                JOptionPane.showMessageDialog(frame, "Please create an account first.");
+                return;
+            }
+            String input = JOptionPane.showInputDialog("Enter amount to withdraw:");
+            if (input != null) {
+                double amt = Double.parseDouble(input);
+                if (account.withdraw(amt)) {
+                    JOptionPane.showMessageDialog(frame, "Withdrawn ₹" + amt);
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Insufficient Balance.");
+                }
+            }
+        });
+
+        viewBtn.addActionListener(e -> {
+            if (account != null) {
+                JOptionPane.showMessageDialog(frame, account.getDetails());
+            } else {
+                JOptionPane.showMessageDialog(frame, "No account found.");
+            }
+        });
+
+        frame.add(depositBtn);
+        frame.add(withdrawBtn);
+        frame.add(viewBtn);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+}
