@@ -1,0 +1,51 @@
+--- Simple Banking System ---
+1. Create Account
+2. Deposit
+3. Withdraw
+4. View Account
+5. Exit
+Enter your choice: 1
+Enter name: John
+Enter account number: 101
+Enter initial balance: 1000
+Account created successfully!
+
+--- Simple Banking System ---
+1. Create Account
+2. Deposit
+3. Withdraw
+4. View Account
+5. Exit
+Enter your choice: 2
+Enter amount to deposit: 500
+Amount deposited successfully!
+
+--- Simple Banking System ---
+1. Create Account
+2. Deposit
+3. Withdraw
+4. View Account
+5. Exit
+Enter your choice: 3
+Enter amount to withdraw: 200
+Amount withdrawn successfully!
+
+--- Simple Banking System ---
+1. Create Account
+2. Deposit
+3. Withdraw
+4. View Account
+5. Exit
+Enter your choice: 4
+Account No: 101
+Name: John
+Balance: 1300.0
+
+--- Simple Banking System ---
+1. Create Account
+2. Deposit
+3. Withdraw
+4. View Account
+5. Exit
+Enter your choice: 5
+Thank you for using the Banking System!
